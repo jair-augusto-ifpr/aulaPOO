@@ -1,16 +1,19 @@
 from typing import List
-from Aluno import Aluno
+from Estudante import Estudante
 from Professor import Professor
 
 class SalaAula:
-    def __init__(self, professor: Professor, list_alunos: List[Aluno] = None):
+    def __init__(self, professor: Professor, list_estudantes: List[Estudante] = None):
         self.professor = professor
-        self.list_alunos = list_alunos if list_alunos is not None else []
+        self.list_estudantes = list_estudantes if list_estudantes is not None else []
 
-    # def adicionar_aluno(self, aluno: Aluno):
-    #     self.list_alunos.append(aluno)
+    def media_idade(self):
+        total_idade = 0
+        for estudante in self.list_estudantes:
+            total_idade += int(estudante.idade)
+        idade_media = total_idade / len(self.list_estudantes)
+        print(f"A média de idade da sala é {idade_media}")
 
-    # def listar_alunos(self):
-    #     for aluno in self.list_alunos:
-    #         print(aluno)
-
+    def adicionar_estudantes(self, list_estudantes):
+        self.list_estudantes = list_estudantes
+        print('estudantes adicionados com sucesso!')

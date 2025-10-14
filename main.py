@@ -1,48 +1,33 @@
-from Aluno import Aluno
-from Professor import Professor
-from database import criar_tabelas
 from SalaAula import SalaAula
+from Professor import Professor
+from Estudante import Estudante
+import os
+import csv
 
-def criar_aluno():
-    print("\n Criar novo aluno:")
+def add_est(nome, idade, curso):
+    estudante = Estudante(nome=nome, idade=idade, curso=curso)
+    return estudante
 
-    nome = input("Informe o nome do aluno: ")
-    idade = int(input("Informe a idade do aluno: "))
-    curso = input("Informe o curso do aluno: ")
-
-    aluno = Aluno.create(nome=nome, idade=idade, curso=curso)
-    print("Aluno cadastrado com sucesso!\n")
-    print(aluno, "\n")
-
-def listar_estudantes():
-    print("\n Lista de Estudantes:")
-    alunos = Aluno.select()
-    if alunos.count() == 0:
-        print("Nenhum estudante cadastrado.")
+def ler_config():
+    arq_csv = "estudantes.csv"
+    list_estudantes = []
+    if os.path.exists(arq_csv):
+        with open(arq_csv, mode='r', encoding='utf-8') as arquivo:
+            estudantes = csv.reader(arquivo)
+            next(estudantes, None)
+            for estudante in estudantes:
+                nome, idade, curso = estudante
+                if curso == "info":
+                    est = add_est(nome, idade, curso)
+                    list_estudantes.append(est)
+            return list_estudantes
     else:
-        for i, aluno in enumerate(alunos, start=1):
-            print(f"{i}. {aluno}")
-    print("\n")
-
-def menu():
-    criar_tabelas()
-
-    while True:
-        print("===== MENU PRINCIPAL =====")
-        print("1. Criar Estudante")
-        print("2. Listar Estudante")
-        print("0. Sair")
-        opcao = input("Escolha uma opção: ")
-
-        if opcao == "1":
-            criar_aluno()
-        elif opcao == "2":
-            listar_estudantes()
-        elif opcao == "0":
-            print("Saindo do programa...")
-            break
-        else:
-            print("Opção inválida. Tente novamente.\n")
+        print(f"Arquivo {arq_csv} não encontrado.")
+        
 
 if __name__ == "__main__":
-    menu()
+    professor = Professor(nome="João", idade="18", curso="info", temp_exp="10")
+    sala = SalaAula(professor=professor)
+    list_estudantes = ler_config()
+    sala.adicionar_estudantes(list_estudantes)
+    sala.media_idade()
