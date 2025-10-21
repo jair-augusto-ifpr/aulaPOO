@@ -1,8 +1,9 @@
-from Estudante import Estudante
+from Pessoa import Pessoa
 
-class Professor(Estudante):
+class Professor(Pessoa):
     def __init__(self, nome: str, idade: int, curso: str, temp_exp: str):
-        super().__init__(nome, idade, curso)
+        super().__init__(nome, idade)
+        self.curso = curso
         self.temp_exp = temp_exp
 
     def __str__(self):

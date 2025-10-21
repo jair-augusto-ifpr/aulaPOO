@@ -17,3 +17,6 @@ class SalaAula:
     def adicionar_estudantes(self, list_estudantes):
         self.list_estudantes = list_estudantes
         print('estudantes adicionados com sucesso!')
+
+        for est in list_estudantes:
+            print(est)
