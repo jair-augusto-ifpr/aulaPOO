@@ -4,8 +4,8 @@ class Notas:
         self.port = port
         self.ing = ing
 
-    def __str__(self):
-        return f"matemática: {self.mat}, português: {self.port} e inglês: {self.ing}"
-    
     def media(self):
         return (self.port + self.mat + self.ing) / 3
+
+    def __str__(self):
+        return f"matemática: {self.mat}, português: {self.port} e inglês: {self.ing}. média: {self.media():.2f}"

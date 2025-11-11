@@ -9,3 +9,6 @@ class Estudante(Pessoa):
 
     def __str__(self):
         return f"(Id: {self.id}) Nome: {self.nome}, Idade: {self.idade}, Curso: {self.curso}, Notas: ({self.notas})"
+    
+    def __repr__(self):
+        return self.__str__()

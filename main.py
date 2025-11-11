@@ -33,7 +33,6 @@ if __name__ == "__main__":
     list_est = ler_config()
     sala.adicionar_estudantes(list_est)
 
-    ordenados = Ordenacao.ordenar_notas(list_est)
+    
 
-    for est in ordenados:
-        print(est)
+    # ordenados = Ordenacao.ordenar_notas(list_est)
